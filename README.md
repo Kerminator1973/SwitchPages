@@ -92,3 +92,21 @@ public partial class MainWindowViewModel : ViewModelBase
 ```csharp
 internal class HomePageViewModel : ViewModelBase
 ```
+
+## Спец.эффекты
+
+При переключении между страницами можно включить эффект визуальной трансформации. Для этого следует изменить файл "MainWindow.axaml" заменив вот этот код:
+
+```csharp
+<ContentControl Content="{Binding CurrentPageViewModel}" />
+```
+
+На описание эффекта визуальной трансформации контента:
+
+```csharp
+<TransitioningContentControl Content="{Binding CurrentPageViewModel}">
+    <TransitioningContentControl.PageTransition>
+        <CrossFade Duration="0:0:0.25" />
+    </TransitioningContentControl.PageTransition>
+</TransitioningContentControl>
+```
