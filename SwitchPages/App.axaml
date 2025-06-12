@@ -1,0 +1,32 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SwitchPages.App"
+             xmlns:local="using:SwitchPages"
+			 xmlns:vm="using:SwitchPages.ViewModels"
+			 xmlns:views="using:SwitchPages"
+             RequestedThemeVariant="Default">
+
+	<!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<!--Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates-->
+
+	<Application.DataTemplates>
+		<!-- This tells Avalonia: "When you are asked to display an object -->
+		<!-- of type HomePageViewModel, you should create an instance of -->
+		<!-- HomePageView to do so." -->
+		<DataTemplate DataType="{x:Type vm:HomePageViewModel}">
+			<views:HomePageView/>
+		</DataTemplate>
+
+		<!-- And the same for the Settings page -->
+		<DataTemplate DataType="{x:Type vm:SettingsPageViewModel}">
+			<views:SettingsPageView/>
+		</DataTemplate>
+	</Application.DataTemplates>	
+  
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+</Application>
