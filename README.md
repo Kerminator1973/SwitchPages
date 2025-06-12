@@ -110,3 +110,7 @@ internal class HomePageViewModel : ViewModelBase
     </TransitioningContentControl.PageTransition>
 </TransitioningContentControl>
 ```
+
+## Альтернативы
+
+Похожим образом задачу решает библиотека [ReactiveUI Routing](https://www.reactiveui.net/docs/handbook/routing.html). Однако она более комплексная и рассчитана на различные библиотеки, включая MAUI, Xamarin Forms, и т.д.
