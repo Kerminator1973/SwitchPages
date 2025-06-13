@@ -85,6 +85,31 @@ public partial class MainWindowViewModel : ViewModelBase
 
 Ценность данного шаблона состоит в том, что не нужно управлять привязками IsVisible вручную. Каждый View связан только со своим ModelView, что позволяет избежать создания огромных перегруженных, разделяемых между разными Views общих ViewModel.
 
+### Для чего используется DataTemplate
+
+Предположим, что мы хотим использовать некоторую разметку в разным частях кода. Также предположим, что эта разметка связана с некоторым типом данных - Product и позволяет сформировать отображение строки в списке (ListBox). В приведённом ниже коде мы определяем шаблон представления данных типа "local:Product" с именем "ProductTemplate", который состоит из двух текстовых блоков, один из которых отображает название, а второй - цену товара:
+
+```csharp
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DataTemplate Example">
+    <Window.Resources>
+        <DataTemplate x:Key="ProductTemplate" DataType="{x:Type local:Product}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Price, StringFormat='Price: {0:C}'}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <ListBox Items="{Binding Products}" ItemTemplate="{StaticResource ProductTemplate}"/>
+</Window>
+```
+
+Определив шаблон, мы указываем его в качестве шаблона для отображения каждого элемента строки списка через свойство "ItemTemplate".
+
+На практике, такое сопоставление может быть использовано для совершенно разных задачи, начиная с настройки отображения строк в списке и заканчивая визуализацией целых блоков контента, как это сделано в данном приложении.
+
 ## На что нужно обратить внимание при разработке кода
 
 Если мы создаём ViewModal через генерацию кода, необходимо добавить наследование от **ViewModelBase**:
